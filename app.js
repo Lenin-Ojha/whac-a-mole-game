@@ -10,8 +10,8 @@ class AudioEngine {
     this.click = new Audio('assets/click.mp3');
 
     this.music.loop = true;
-    this.music.volume = 0.05;
-    this.click.volume = .5;
+    this.music.volume = 0.20;
+    this.click.volume = .3;
   }
 
   ensureContext() {
