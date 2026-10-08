@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#09131b" />
+  <title>Neon Forest Whac-A-Mole</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <div class="background-fx" aria-hidden="true">
+    <span class="leaf leaf-1">✦</span><span class="leaf leaf-2">❧</span>
+    <span class="leaf leaf-3">✦</span><span class="leaf leaf-4">❧</span>
+    <span class="leaf leaf-5">✦</span><span class="leaf leaf-6">❧</span>
+  </div>
+
+  <svg class="svg-defs" aria-hidden="true" width="0" height="0">
+    <defs>
+      <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="3" result="blur" />
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+
+      <symbol id="creature-normal" viewBox="0 0 120 120">
+        <ellipse cx="60" cy="88" rx="39" ry="26" fill="#a86232" />
+        <circle cx="60" cy="56" r="36" fill="#c77a40" />
+        <circle cx="34" cy="31" r="14" fill="#9c542c" />
+        <circle cx="86" cy="31" r="14" fill="#9c542c" />
+        <circle cx="43" cy="53" r="5" fill="#18222a" />
+        <circle cx="77" cy="53" r="5" fill="#18222a" />
+        <ellipse cx="60" cy="67" rx="8" ry="6" fill="#5a2d20" />
+        <path d="M52 75 Q60 82 68 75" fill="none" stroke="#5a2d20" stroke-width="4" stroke-linecap="round" />
+        <path d="M92 76 Q116 55 105 30 Q92 48 88 60" fill="#d4914d" stroke="#8d4d2b" stroke-width="4" />
+        <ellipse cx="60" cy="45" rx="18" ry="11" fill="#e4a660" opacity=".45" />
+      </symbol>
+
+      <symbol id="creature-hit" viewBox="0 0 120 120">
+        <ellipse cx="60" cy="88" rx="39" ry="26" fill="#a86232" />
+        <circle cx="60" cy="56" r="36" fill="#c77a40" />
+        <circle cx="34" cy="31" r="14" fill="#9c542c" />
+        <circle cx="86" cy="31" r="14" fill="#9c542c" />
+        <path d="M37 48 l12 12 M49 48 l-12 12 M71 48 l12 12 M83 48 l-12 12" stroke="#fff2c0" stroke-width="5" stroke-linecap="round" />
+        <ellipse cx="60" cy="68" rx="8" ry="6" fill="#5a2d20" />
+        <path d="M50 80 Q60 70 70 80" fill="none" stroke="#5a2d20" stroke-width="4" stroke-linecap="round" />
+        <path d="M92 76 Q116 55 105 30 Q92 48 88 60" fill="#d4914d" stroke="#8d4d2b" stroke-width="4" />
+      </symbol>
+
+      <symbol id="creature-golden" viewBox="0 0 120 120">
+        <ellipse cx="60" cy="88" rx="39" ry="26" fill="#d99b13" />
+        <circle cx="60" cy="56" r="36" fill="#ffd45b" stroke="#fff1a1" stroke-width="4" />
+        <circle cx="34" cy="31" r="14" fill="#e7a713" />
+        <circle cx="86" cy="31" r="14" fill="#e7a713" />
+        <circle cx="43" cy="53" r="5" fill="#382600" />
+        <circle cx="77" cy="53" r="5" fill="#382600" />
+        <path d="M60 63 l4 7 8 1 -6 6 2 8 -8-4 -8 4 2-8 -6-6 8-1z" fill="#fff" filter="url(#softGlow)" />
+        <path d="M92 76 Q116 55 105 30 Q92 48 88 60" fill="#ffe57d" stroke="#c9930b" stroke-width="4" />
+      </symbol>
+
+      <symbol id="creature-bomb" viewBox="0 0 120 120">
+        <ellipse cx="60" cy="83" rx="42" ry="30" fill="#384955" />
+        <path d="M25 66 L11 52 29 53 22 36 39 47 42 27 53 45 66 27 69 47 87 36 80 54 100 52 91 68" fill="#58707c" />
+        <circle cx="60" cy="59" r="29" fill="#607985" />
+        <path d="M39 50 l12 8 M81 50 l-12 8" stroke="#ff6b6b" stroke-width="5" stroke-linecap="round" />
+        <circle cx="47" cy="59" r="4" fill="#161f24" /><circle cx="73" cy="59" r="4" fill="#161f24" />
+        <ellipse cx="60" cy="70" rx="7" ry="5" fill="#151d22" />
+        <path d="M83 31 C88 17 102 17 104 7" fill="none" stroke="#f3bd49" stroke-width="5" stroke-linecap="round" />
+        <circle cx="105" cy="7" r="5" fill="#ff6a3d" filter="url(#softGlow)" />
+      </symbol>
+
+      <symbol id="hammer-icon" viewBox="0 0 90 90">
+        <g transform="rotate(-18 45 45)">
+          <rect x="39" y="36" width="12" height="47" rx="6" fill="#99572c" />
+          <rect x="18" y="12" width="54" height="29" rx="9" fill="#d9e5ee" stroke="#6d7e89" stroke-width="5" />
+          <rect x="27" y="19" width="36" height="8" rx="4" fill="#ffffff" opacity=".55" />
+        </g>
+      </symbol>
+
+      <symbol id="star-particle" viewBox="0 0 20 20">
+        <path d="M10 1l2.2 5.7L18 7l-4.5 3.7L15 17l-5-3.3L5 17l1.5-6.3L2 7l5.8-.3z" fill="currentColor" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <main class="app-shell" id="appShell">
+    <header class="hud-header glass-panel" aria-label="Game status">
+      <div class="brand-block">
+        <div class="brand-kicker">NEON FOREST</div>
+        <h1>Whac-A-Mole</h1>
+      </div>
+
+      <section class="stats-grid" aria-live="polite">
+        <div class="stat-card"><span>Score</span><strong id="scoreValue">0</strong></div>
+        <div class="stat-card"><span>High</span><strong id="highScoreValue">0</strong></div>
+        <div class="stat-card"><span>Level</span><strong id="levelValue">1</strong></div>
+        <div class="stat-card"><span>Turn</span><strong id="turnValue">1</strong></div>
+        <div class="stat-card combo-card"><span>Combo</span><strong id="comboValue">x1</strong></div>
+      </section>
+
+      <div class="timer-widget" aria-label="Round timer">
+        <svg viewBox="0 0 72 72" role="img" aria-label="Remaining time">
+          <circle class="timer-track" cx="36" cy="36" r="30"></circle>
+          <circle class="timer-progress" id="timerProgress" cx="36" cy="36" r="30"></circle>
+        </svg>
+        <div class="timer-text"><strong id="timerValue">30.0</strong><span>SEC</span></div>
+      </div>
+
+      <nav class="hud-controls" aria-label="Game controls">
+        <button class="arcade-btn primary" id="startPauseBtn" type="button">Start Game</button>
+        <button class="icon-btn" id="fxToggle" type="button" aria-pressed="false" title="Toggle sound effects">FX 🔊</button>
+        <button class="icon-btn" id="musicToggle" type="button" aria-pressed="false" title="Toggle background music">Music ♫</button>
+        <button class="arcade-btn danger" id="resetBtn" type="button">Reset Session</button>
+      </nav>
+    </header>
+
+    <section class="game-viewport" id="gameViewport" aria-label="Whac-A-Mole game board">
+      <div class="announcement" id="announcement" aria-live="assertive"></div>
+      <div class="freeze-banner" id="freezeBanner">FROZEN!</div>
+      <div class="game-board" id="gameBoard" role="grid" aria-label="Creature holes"></div>
+
+      <div class="hammer-cursor" id="hammerCursor" aria-hidden="true">
+        <svg viewBox="0 0 90 90"><use href="#hammer-icon"></use></svg>
+      </div>
+    </section>
+
+    <footer class="status-strip glass-panel">
+      <span id="difficultyLabel">3×3 • 1 spawn • 1200ms window</span>
+      <span id="targetLabel">Pass target: 120 pts</span>
+    </footer>
+  </main>
+
+  <div class="modal-overlay hidden" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <section class="modal-card glass-panel" id="modalCard">
+      <div class="modal-badge" id="modalBadge">ROUND COMPLETE</div>
+      <h2 id="modalTitle">Level Complete</h2>
+      <p class="modal-subtitle" id="modalSubtitle">Great run!</p>
+      <div class="modal-stats" id="modalStats"></div>
+      <div class="high-score-banner hidden" id="highScoreBanner">✨ NEW HIGH SCORE! ✨</div>
+      <div class="modal-actions" id="modalActions"></div>
+      <div class="confetti-layer" id="confettiLayer" aria-hidden="true"></div>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
